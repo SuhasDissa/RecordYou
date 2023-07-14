@@ -22,10 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.SortOrder
+import com.bnyro.recorder.obj.RecordingItemData
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.PlayerView
 import com.bnyro.recorder.ui.models.PlayerModel
@@ -42,7 +42,7 @@ fun PlayerScreen(
         mutableStateOf(SortOrder.ALPHABETIC)
     }
     val selectedFiles = remember {
-        mutableStateOf(listOf<DocumentFile>())
+        mutableStateOf(listOf<RecordingItemData>())
     }
     val playerModel: PlayerModel = viewModel()
 
@@ -124,7 +124,11 @@ fun PlayerScreen(
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
         ) {
-            PlayerView(showVideoModeInitially, showDeleteDialog, selectedSortOrder, selectedFiles) {
+            PlayerView(
+                showVideoModeInitially,
+                showDeleteDialog,
+                selectedFiles
+            ) {
                 showDeleteDialog = false
             }
         }

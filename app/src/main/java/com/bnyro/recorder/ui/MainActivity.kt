@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.compose.rememberNavController
-import com.bnyro.recorder.enums.Recorder
+import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.ThemeMode
 import com.bnyro.recorder.ui.models.ThemeModel
 import com.bnyro.recorder.ui.theme.RecordYouTheme
@@ -23,9 +23,9 @@ class MainActivity : ComponentActivity() {
         val themeModel: ThemeModel = ViewModelProvider(this).get()
 
         val initialRecorder = when (intent?.getStringExtra("action")) {
-            "audio" -> Recorder.AUDIO
-            "screen" -> Recorder.SCREEN
-            else -> Recorder.NONE
+            "audio" -> RecorderType.AUDIO
+            "screen" -> RecorderType.VIDEO
+            else -> RecorderType.NONE
         }
 
         setContent {
